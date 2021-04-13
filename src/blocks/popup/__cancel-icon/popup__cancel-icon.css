@@ -1,0 +1,25 @@
+.popup__cancel-icon {
+  background-image: url('./../../../images/popup/Close%20Icon.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: transparent;
+  border: none;
+  width: 40.7px;
+  height: 40.7px;
+  align-self: flex-end;
+}
+
+.popup__cancel-icon:hover {
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 700px) {
+  .popup__cancel-icon {
+    width: 26px;
+    height: 26px;
+    margin-bottom: 16px;
+    background-image: url(./../../../images/popup/mob%20close%20Icon.png);
+    margin-right: 5px; 
+  }
+}

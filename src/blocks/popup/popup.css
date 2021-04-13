@@ -1,0 +1,24 @@
+@import url('./__container/popup__container.css');
+@import url('./__cancel-icon/popup__cancel-icon.css');
+@import url('./__edit-form/popup__edit-form.css');
+@import url('./__action-name/popup__action-name.css');
+@import url('./__input-field/popup__input-field.css');
+@import url('./__save-button/popup__save-button.css');
+@import url('./__zoom-container/popup__zoom-container.css');
+@import url('./__zoom-img/popup__zoom-img.css');
+@import url('./__zoom-caption/popup__zoom-caption.css');
+
+.popup {
+  visibility: hidden;
+  opacity: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, .5);
+  transition: 1s;
+}

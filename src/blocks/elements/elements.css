@@ -1,0 +1,30 @@
+@import url('./__card/elements__card.css');
+@import url('./__picture/elements__picture.css');
+@import url('./__place-panel/elements__place-panel.css');
+@import url('./__like/elements__like.css');
+@import url('./__name/elements__name.css');
+@import url('./__remove-btn/elements__remove-btn.css');
+@import url('./__like-container/elements__like-conteiner.css');
+@import url('./__like-counter/elements__like-counter.css');
+@import url('./__remove-btn/_condition/elements__remove-btn_condition_disabled.css');
+.elements {
+  max-width: 882px;
+  display: grid;
+  grid-template-columns: repeat(3, 282px);
+  grid-row-gap: 15px;
+  grid-column-gap: 18px;
+  margin:0 auto 66px;
+}
+
+@media screen and (max-width: 1024px) {
+  .elements{
+    grid-template-columns: repeat(2, 282px);
+    justify-content: center;
+  }
+}
+@media screen and (max-width: 636px) {
+  .elements{
+    grid-template-columns: repeat(1, 282px);
+    margin: 0 auto 48px;
+  }
+}

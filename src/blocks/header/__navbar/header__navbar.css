@@ -1,0 +1,4 @@
+@import url(./__link/header__navbar__link.css);
+.header__navbar{
+    max-width: calc(100% - 200px);
+}

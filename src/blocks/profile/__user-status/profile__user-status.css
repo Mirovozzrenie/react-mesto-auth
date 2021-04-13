@@ -1,0 +1,22 @@
+.profile__user-status {
+  margin: 0;
+  font-family:  'Inter', 'Arial', 'Helvetica', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 22px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 295px;
+}
+
+@media screen and (max-width: 700px) {
+  .profile__user-status {
+    margin: 0;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
+    margin-bottom: 36px;
+  }
+}

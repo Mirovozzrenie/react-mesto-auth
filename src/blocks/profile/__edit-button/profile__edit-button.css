@@ -1,0 +1,15 @@
+.profile__edit-button {
+  width: 24px;
+  height: 24px;
+  background-image: url('./../../../images/profile/penc.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  align-self: center;
+  background-color: transparent;
+  border: 1px solid #fff;
+}
+
+.profile__edit-button:hover {
+  opacity: 0.6;
+  cursor: pointer;
+}
