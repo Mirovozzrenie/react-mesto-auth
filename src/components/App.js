@@ -39,38 +39,35 @@ export default function App() {
     useEffect(()=>{
         tokenCheck();
     }, [])
-    useEffect(()=>{
-        history.push('/')
-    },[loggedIn])
+    // useEffect(()=>{
+    //     history.push('/')
+    // },[loggedIn])
 
     function handleLogin(userDate) {
         Auth.authorize(userDate.email, userDate.password).then((data) => {
                 if(!data){
-                    console.log('!2')
                     throw new Error('Что-то пошло не так!')}
-                if (data.token){
+                if (data){
                     setLoggedIn(true);
-                   localStorage.setItem('tooken', data.tooken)
-                    console.log(2)
-                    console.log(loggedIn);
+                   localStorage.setItem('jwt', data.token)
                     history.push('/');
                 }
             })
     }
 
     function tokenCheck() {
-        if(localStorage.getItem('tooken')){
-            let tooken = localStorage.getItem('tooken');
-            Auth.getContent(tooken).then(({email, password})=>{
+        if(localStorage.getItem('jwt')){
+            let jwt = localStorage.getItem('jwt');
+            Auth.getContent(jwt).then(({email, password})=>{
                 if ({email, password}){
                     setLoggedIn(true);
                     setUserDate({email, password})
                 }
             })
         }
-        let tooken = localStorage.getItem('tooken');
-        if (tooken === true){
-            Auth.getContent(tooken).then((res) => {
+        let jwt = localStorage.getItem('jwt');
+        if (jwt === true){
+            Auth.getContent(jwt).then((res) => {
                 if (res){ handleLogin()
                     }
                 }
@@ -165,7 +162,6 @@ export default function App() {
                 });
         }
         return(
-            <BrowserRouter>
                 <CurrentUserContext.Provider value={currentUser}>
                     <Header/>
                     <Route path='/sign-in'> <Login onLogin={handleLogin} /></Route>
@@ -188,6 +184,5 @@ export default function App() {
                         <ImagePopup isOpen={isImagePopupOpen} card={selectedCard} onClose={closeAllPopups}/>
                     </Route>
                 </CurrentUserContext.Provider>
-             </BrowserRouter>
         )
     }
