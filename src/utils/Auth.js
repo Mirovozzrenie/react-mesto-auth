@@ -2,7 +2,6 @@
 export const BASE_URL = 'https://auth.nomoreparties.co';
 
 export const register = (password, email) => {
-    console.log(password, email)
     return fetch(`${BASE_URL}/signup`, {
         method: 'POST',
         headers: {
@@ -11,7 +10,6 @@ export const register = (password, email) => {
         },
         body: JSON.stringify({password: password, email: email})
     }).then((res) => {
-        debugger
         return res})
         .catch((err) => console.log(err));
 };
@@ -26,7 +24,6 @@ export const authorize = (email, password) => {
         },
         body: JSON.stringify({password: password, email:email})
     }).then((res) => {return res.json()}).then((data) => {
-            console.log(data)
             if (data){
                 localStorage.setItem('jwt', data.jwt);
                 return data;

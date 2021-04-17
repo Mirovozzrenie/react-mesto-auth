@@ -14,6 +14,7 @@ import Login from "./Login";
 import {Route, useHistory} from 'react-router-dom';
 import ProtectedRoute from "./ProtectedRoute";
 import * as Auth from '../utils/Auth';
+import InfoTooltip from "./InfoTooltip";
 ///////////////////////////////////////////////////////////////////////////////////////
 export default function App() {
 
@@ -31,7 +32,39 @@ export default function App() {
         email: '',
         password: '',
     });
+    const [handleInfoToolTip, setHandleInfoToolTip] = useState(false)
+    const [regResult, setRegResult] = useState(false);
+    const [message, setMessage] = useState('');
     const history = useHistory();
+/////////////////////////
+    function handleInfoToolTipOpen(){
+        setHandleInfoToolTip(true)
+    }
+
+    function handleRegSubmit(regInfo){
+        // e.preventDefault()
+        // const {password, email } = regInfo;
+        return Auth.register(regInfo.password, regInfo.email).then((res) => {
+            if(res.ok) {
+                handleInfoToolTipOpen();
+                setMessage('Вы успешно зарегистрировались!')
+                setRegResult(true);
+                history.push('/sign-in')
+            }else {
+                setRegResult(false);
+                setMessage('Что-то пошло не так!\n' +
+                    'Попробуйте ещё раз.');
+                handleInfoToolTipOpen();
+            }
+        });
+    }
+    function onClose(){
+        setMessage('');
+        setHandleInfoToolTip(false);
+        setRegResult(false);
+    }
+
+
 
     useEffect(()=>{
         tokenCheck();
@@ -65,14 +98,16 @@ export default function App() {
                 }
             })
         }
-        let jwt = localStorage.getItem('jwt');
-        if (jwt === true){
-            Auth.getContent(jwt).then((res) => {
-                if (res){ handleLogin()
-                    }
-                }
-            )
-        }
+        // let jwt = localStorage.getItem('jwt');
+        // if (jwt === true){
+        //     console.log(jwt)
+        //     Auth.getContent(jwt).then((res) => {
+        //         if (res) {
+        //             handleLogin()
+        //         }
+        //         }
+        //     )
+        // }
     }
 
 
@@ -164,7 +199,7 @@ export default function App() {
                 <CurrentUserContext.Provider value={currentUser}>
                     <Header userData={userDate}/>
                     <Route path='/sign-in'> <Login onLogin={handleLogin} /></Route>
-                    <Route path='/sign-up' component={Register}/>
+                    <Route path='/sign-up'><Register  openToolTip={handleInfoToolTipOpen} onSubmit={handleRegSubmit}/></Route>
                     <Route exact path='/'>
                         <ProtectedRoute exact path='/' userData={userDate} loggedIn={loggedIn} component={Main} onEditAvatar={handleEditAvatarClick}
                                         onCardClick={handleCardClick} onEditProfile={handleEditProfileClick}
@@ -181,6 +216,8 @@ export default function App() {
                                        isOpen={isDelConfirmPopupOpen} onClose={closeAllPopups}></PopupWithForm>
                         <ImagePopup isOpen={isImagePopupOpen} card={selectedCard} onClose={closeAllPopups}/>
                     </Route>
+                    <InfoTooltip isOpen={handleInfoToolTip}  message={message} regResult={regResult} onClose={onClose}/>
+
                 </CurrentUserContext.Provider>
         )
     }

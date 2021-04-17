@@ -2,22 +2,22 @@ import { Link, useHistory } from 'react-router-dom';
 import * as Auth from '../utils/Auth';
 import React, {useState, } from "react";
 import InfoTooltip from "./InfoTooltip";
-const Register = () => {
+const Register = (props) => {
+    const [regInfo, setRegInfo] = useState({email: '', password: '',})
+    // const [message, setMessage] = useState('');
+    // const history = useHistory();
+    // const [regResult, setRegResult] = useState(false);
+    // const [handleInfoToolTip, setHandleInfoToolTip] = useState(false)
 
-    const [regInfo, setRegInfo] = useState({email: '', pssword: '',})
-    const [message, setMessage] = useState('');
-    const history = useHistory();
-    const [regResult, setRegResult] = useState(false);
-    const [handleInfoToolTip, setHandleInfoToolTip] = useState(false)
+    // function onClose(){
+    //     setMessage('');
+    //     props.onClose();
+    //     setRegResult(false);
+    // }
 
-    function onClose(){
-        setMessage('');
-        setHandleInfoToolTip(false);
-        setRegResult(false);
-    }
-    function handleInfoToolTipOpen(){
-        setHandleInfoToolTip(true)
-    }
+    // function handleInfoToolTipOpen(){
+    //     props.openToolTip();
+    // }
 
    function handleChange(e) {
         const {name, value} = e.target;
@@ -27,26 +27,26 @@ const Register = () => {
         });
     }
 
-   function handleSubmit(e){
-        e.preventDefault()
-            const {password, email } = regInfo;
-          return Auth.register(password, email).then((res) => {
-              debugger
-                if(res.ok) {debugger
-                    handleInfoToolTipOpen();
-                    setMessage('Вы успешно зарегистрировались!')
-                    setRegResult(true);
-                    setTimeout(()=>{history.push('/sign-in')}, 2000)
-                    // history.push('/sign-in')
-                }else {
-                    setRegResult(false);
-                    setMessage('Что-то пошло не так!\n' +
-                        'Попробуйте ещё раз.');
-                    handleInfoToolTipOpen();
-                }
-            });
+   function handleSubmit(event){
+        event.preventDefault()
+            // const {password, email } = regInfo;
+       props.onSubmit(regInfo);
+       //        return Auth.register(password, email).then((res) => {
+   //              if(res.ok) {
+   //                  handleInfoToolTipOpen();
+   //                  setMessage('Вы успешно зарегистрировались!')
+   //                  setRegResult(true);
+   //                  history.push('/sign-in')
+   //              }else {
+   //                  setRegResult(false);
+   //                  setMessage('Что-то пошло не так!\n' +
+   //                      'Попробуйте ещё раз.');
+   //                  handleInfoToolTipOpen();
+   //              }
+   //          });
     }
-    {
+
+
         return(
             <div className="register">
                 <p className="register__welcome">
@@ -63,10 +63,10 @@ const Register = () => {
                     <p className='register__question'>Уже зарегистрированы?</p>
                     <Link className='register__link-to-enter' to="/sign-in">Войти</Link>
                 </div>
-                <InfoTooltip isOpen={handleInfoToolTip}  message={message} regResult={regResult} onClose={onClose}/>
+                {/*<InfoTooltip isOpen={handleInfoToolTip}  message={message} regResult={regResult} onClose={onClose}/>*/}
             </div>
         )
-    }
+
 }
 
 export default Register;
