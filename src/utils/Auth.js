@@ -1,4 +1,3 @@
-
 export const BASE_URL = 'https://auth.nomoreparties.co';
 
 export const register = (password, email) => {
@@ -10,8 +9,10 @@ export const register = (password, email) => {
         },
         body: JSON.stringify({password: password, email: email})
     }).then((res) => {
-        return res})
-        .catch((err) => console.log(err));
+        return res
+    })
+        .catch((err) =>
+            console.log(err));
 };
 
 
@@ -22,13 +23,15 @@ export const authorize = (email, password) => {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({password: password, email:email})
-    }).then((res) => {return res.json()}).then((data) => {
-            if (data){
-                localStorage.setItem('jwt', data.jwt);
-                return data;
-            }
-        })
+        body: JSON.stringify({password: password, email: email})
+    }).then((res) => {
+        return res.json()
+    }).then((data) => {
+        if (data) {
+            localStorage.setItem('jwt', data.jwt);
+            return data;
+        }
+    })
         .catch(err => console.log(err))
 };
 

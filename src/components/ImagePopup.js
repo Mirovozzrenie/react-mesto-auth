@@ -1,9 +1,9 @@
-export default function ImagePopup(props){
+export default function ImagePopup(props) {
     const imagePopupClassNames = `popup popup_zoom ${
         props.isOpen ? "popup_active" : ""
     }`;
 
-    return(
+    return (
         <div className={imagePopupClassNames} onClick={props.onClose}>
             <figure className="popup__zoom-container">
                 <button className="popup__cancel-icon popup__zoom-cancel" onClick={props.onClose}></button>
