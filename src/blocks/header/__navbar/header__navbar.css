@@ -1,4 +1,7 @@
 @import url(./__link/header__navbar__link.css);
+@import url(./__link-exit/header__navbar__link-exit.css);
 .header__navbar{
     max-width: calc(100% - 200px);
+    display: flex;
+    align-items: baseline;
 }

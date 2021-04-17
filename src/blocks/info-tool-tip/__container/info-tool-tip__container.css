@@ -1,0 +1,7 @@
+.info-tool-tip__container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #000;
+    position: relative;
+}

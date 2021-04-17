@@ -1,0 +1,19 @@
+@import url('./__text/info-tool-tip__text.css');
+@import url('./__img/info-tool-tip__img.css');
+@import url('./__content/info-tool-tip__content.css');
+@import url('./__button/info-tool-tip__button.css');
+@import url('./__container/info-tool-tip__container.css');
+.info-tool-tip{
+    visibility: hidden;
+    opacity: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba( 0, 0, 0, .5);
+    transition: 1s;
+}

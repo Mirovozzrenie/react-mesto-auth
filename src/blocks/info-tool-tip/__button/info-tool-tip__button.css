@@ -1,0 +1,25 @@
+.info-tool-tip__button {
+    background-image: url('./../../../images/popup/Close%20Icon.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: transparent;
+    border: none;
+    width: 40.7px;
+    height: 40.7px;
+    align-self: flex-end;
+}
+
+.info-tool-tip__button:hover {
+    opacity: 0.6;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 700px) {
+    .info-tool-tip__button {
+        width: 26px;
+        height: 26px;
+        margin-bottom: 16px;
+        background-image: url(./../../../images/popup/mob%20close%20Icon.png);
+        margin-right: 5px;
+    }
+}

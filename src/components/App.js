@@ -11,10 +11,9 @@ import EditAvatarPopup from "./EditAvatarPopup";
 import AddPlacePopup from "./AddPlacePopup";
 import Register from "./Register";
 import Login from "./Login";
-import {BrowserRouter, Redirect, Route, useHistory} from 'react-router-dom';
+import {Route, useHistory} from 'react-router-dom';
 import ProtectedRoute from "./ProtectedRoute";
 import * as Auth from '../utils/Auth';
-import {getContent} from "../utils/Auth";
 ///////////////////////////////////////////////////////////////////////////////////////
 export default function App() {
 
@@ -33,15 +32,14 @@ export default function App() {
         password: '',
     });
     const history = useHistory();
-    // function componentDidMount() {
-    //     TokenCheck();
-    // }
+
     useEffect(()=>{
         tokenCheck();
     }, [])
-    // useEffect(()=>{
-    //     history.push('/')
-    // },[loggedIn])
+    useEffect(()=>{
+        if(loggedIn === true){
+        history.push('/')}
+    },[loggedIn])
 
     function handleLogin(userDate) {
         Auth.authorize(userDate.email, userDate.password).then((data) => {
@@ -58,10 +56,11 @@ export default function App() {
     function tokenCheck() {
         if(localStorage.getItem('jwt')){
             let jwt = localStorage.getItem('jwt');
-            Auth.getContent(jwt).then(({email, password})=>{
-                if ({email, password}){
+            Auth.getContent(jwt).then((data)=>{
+                if (data.data){
+                    console.log(data.data)
                     setLoggedIn(true);
-                    setUserDate({email, password})
+                    setUserDate({email: data.data.email})
                 }
             })
         }
@@ -163,10 +162,9 @@ export default function App() {
         }
         return(
                 <CurrentUserContext.Provider value={currentUser}>
-                    <Header/>
+                    <Header userData={userDate}/>
                     <Route path='/sign-in'> <Login onLogin={handleLogin} /></Route>
                     <Route path='/sign-up' component={Register}/>
-                    {/*<Route > {loggedIn ? <Redirect to='/' />:<Redirect to='/sign-in' />}</Route>*/}
                     <Route exact path='/'>
                         <ProtectedRoute exact path='/' userData={userDate} loggedIn={loggedIn} component={Main} onEditAvatar={handleEditAvatarClick}
                                         onCardClick={handleCardClick} onEditProfile={handleEditProfileClick}

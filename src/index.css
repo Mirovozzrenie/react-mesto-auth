@@ -12,3 +12,6 @@
 @import url('./../src/blocks/popup/__error/popup__error.css');
 @import url('./../src/blocks/popup/__save-button/_invalid/popup__save-button_invalid.css');
 @import url('./../src/blocks/login/login.css');
+@import url('./../src/blocks/register/register.css');
+@import url('./../src/blocks/info-tool-tip/info-tool-tip.css');
+@import url('./../src/blocks/info-tool-tip/_active/info-tool-tip_active.css');
