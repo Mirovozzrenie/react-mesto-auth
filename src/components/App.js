@@ -15,7 +15,6 @@ import {Route, useHistory} from 'react-router-dom';
 import ProtectedRoute from "./ProtectedRoute";
 import * as Auth from '../utils/Auth';
 import InfoTooltip from "./InfoTooltip";
-///////////////////////////////////////////////////////////////////////////////////////
 export default function App() {
 
     const [isEditAvatarPopupOpen, setEditAvatarClick] = React.useState(false)
@@ -36,14 +35,11 @@ export default function App() {
     const [regResult, setRegResult] = useState(false);
     const [message, setMessage] = useState('');
     const history = useHistory();
-/////////////////////////
     function handleInfoToolTipOpen(){
         setHandleInfoToolTip(true)
     }
 
     function handleRegSubmit(regInfo){
-        // e.preventDefault()
-        // const {password, email } = regInfo;
         return Auth.register(regInfo.password, regInfo.email).then((res) => {
             if(res.ok) {
                 handleInfoToolTipOpen();
@@ -98,16 +94,6 @@ export default function App() {
                 }
             })
         }
-        // let jwt = localStorage.getItem('jwt');
-        // if (jwt === true){
-        //     console.log(jwt)
-        //     Auth.getContent(jwt).then((res) => {
-        //         if (res) {
-        //             handleLogin()
-        //         }
-        //         }
-        //     )
-        // }
     }
 
 
