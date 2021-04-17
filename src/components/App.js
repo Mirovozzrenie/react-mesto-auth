@@ -48,6 +48,7 @@ export default function App() {
                 if (data){
                     setLoggedIn(true);
                    localStorage.setItem('jwt', data.token)
+                    tokenCheck();
                     history.push('/');
                 }
             })
@@ -58,7 +59,7 @@ export default function App() {
             let jwt = localStorage.getItem('jwt');
             Auth.getContent(jwt).then((data)=>{
                 if (data.data){
-                    console.log(data.data)
+
                     setLoggedIn(true);
                     setUserDate({email: data.data.email})
                 }
@@ -78,7 +79,6 @@ export default function App() {
 
     function handleEditAvatarClick() {
             setEditAvatarClick(true)
-            console.log(isEditAvatarPopupOpen)
         }
         function handleEditProfileClick() {
             setEditProfileClick(true)

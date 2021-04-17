@@ -32,11 +32,12 @@ const Register = () => {
             const {password, email } = regInfo;
           return Auth.register(password, email).then((res) => {
               debugger
-                if(res.ok) {
-                    history.push('/sign-in')
-                    setRegResult(true);
-                    setMessage('Вы успешно зарегистрировались!')
+                if(res.ok) {debugger
                     handleInfoToolTipOpen();
+                    setMessage('Вы успешно зарегистрировались!')
+                    setRegResult(true);
+                    setTimeout(()=>{history.push('/sign-in')}, 2000)
+                    // history.push('/sign-in')
                 }else {
                     setRegResult(false);
                     setMessage('Что-то пошло не так!\n' +

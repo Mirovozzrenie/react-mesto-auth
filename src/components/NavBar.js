@@ -1,6 +1,6 @@
 import { NavLink, Route, useHistory} from "react-router-dom";
 export default function NavBar(props) {
-    console.log(props.userData)
+
     const history = useHistory();
     function logOut() {
         localStorage.removeItem('jwt')
